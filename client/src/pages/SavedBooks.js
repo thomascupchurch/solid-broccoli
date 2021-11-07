@@ -1,4 +1,4 @@
-import React, { useState /*, useEffect*/ } from "react";
+import React from "react";
 import {
   Jumbotron,
   Container,
@@ -7,8 +7,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { useQuery, useMutation } from "@apollo/client";
-// import { getMe, deleteBook } from "../utils/API";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { REMOVE_BOOK } from "../utils/mutations";
@@ -16,6 +15,7 @@ import { GET_ME } from "../utils/queries";
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
+
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   const userData = data?.me || {};

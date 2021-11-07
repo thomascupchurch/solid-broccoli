@@ -1,21 +1,6 @@
-// resolvers.js: Define the query and mutation functionality to work with the Mongoose models.
-
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Book } = require("../models");
 const { signToken } = require("../utils/auth");
-
-// const client = new ApolloClient({
-//   request: (operation) => {
-//     const token = localStorage.getItem("id_token");
-
-//     operation.setContext({
-//       headers: {
-//         authorization: token ? `Bearer ${token}` : "",
-//       },
-//     });
-//   },
-//   uri: "/graphql",
-// });
 
 const resolvers = {
   Query: {
@@ -28,17 +13,6 @@ const resolvers = {
       }
       throw new AuthenticationError("Not logged in");
     },
-    // user: async (parent, { username }) => {
-    //   return User.findOne({ username })
-    //     .select("-__v -password")
-    //     .populate("savedBooks");
-    // },
-    // books: async () => {
-    //   return Book.find();
-    // },
-    // book: async (parent, { title }) => {
-    //   return Book.findOne({ title });
-    // },
   },
 
   Mutation: {

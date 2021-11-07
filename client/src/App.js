@@ -1,19 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {
-  ApolloProvider,
-  createHttpLink,
-  ApolloClient,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
 import SearchBooks from "./pages/SearchBooks";
 import SavedBooks from "./pages/SavedBooks";
 import Navbar from "./components/Navbar";
-import gql from "graphql-tag";
-
-const httpLink = createHttpLink({
-  uri: "/graphql",
-});
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -25,7 +16,7 @@ const client = new ApolloClient({
       },
     });
   },
-  cache: new InMemoryCache(),
+  uri: "/graphql",
 });
 
 function App() {
